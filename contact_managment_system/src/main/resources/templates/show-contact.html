@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>contact details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .card {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container p {
+            text-align: center;
+            color: #fff;
+        }
+
+        .container a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>emails</h1>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(emails)}">
+        <div class="card" th:each="email : ${emails}">
+            <p th:text="${email.email}"></p>
+            <a th:href="@{'/email/update?id=' + ${email.id} }">edit the phone</a>
+            <a th:href="@{'/email/delete?id=' + ${email.id} }">delete</a>
+        </div>
+    </div>
+</div>
+<div th:if="${#lists.isEmpty(emails)}">
+    <center><p>there are no emails available</p></center>
+    </div>
+<center>
+<a th:href="@{'http://localhost:8080/email/add?id='+${id}}">add a new email</a>
+</center>
+    <br>
+<h1>Phones</h1>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(phones)}">
+        <div class="card" th:each="phone : ${phones}">
+            <p th:text="${phone.phone}"></p>
+            <a th:href="@{'/phone/update?id=' + ${phone.id} }">edit the email</a>
+            <a th:href="@{'/phone/delete?id=' + ${phone.id} }">delete</a>
+        </div>
+    </div>
+</div>
+    <div th:if="${#lists.isEmpty(phones)}">
+        <center><p>there are no emails available</p></center>
+    </div>
+       <center>
+       <a th:href="@{'http://localhost:8080/phone/add?id='+${id}}">add a new phone number</a>
+       </center>
+</div>
+</body>
+</html>

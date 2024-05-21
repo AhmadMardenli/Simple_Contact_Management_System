@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #222;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #fff;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    input[type="hidden"] {
+        display: none;
+    }
+
+    input::placeholder {
+        color: #ccc;
+    }
+
+    label {
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+<center><h1>Register now</h1></center>
+    <form method="post" action="/user/register">
+        <input name="username" type="text" placeholder="enter the username" />
+        <input name="password" type="text" placeholder="enter the password" />
+        <div th:if="${param.emailError}">
+            <p>username exists</p>
+        </div>
+        <input type="submit"  />
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>contacts</title>
+<!--    <link rel="stylesheet" href="/css/all-posusers.css">-->
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="submit"] {
+            padding: 5px;
+            margin: 0 5px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .card {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a[href="http://localhost:8080/contact/reset"], a[href="http://localhost:8080/contact/create"] {
+            color: #fff;
+            text-decoration: underline;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        center {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Contacts</h1>
+<div class="container">
+    <form method="get" action="/contact/all" class="search">
+        <input type="text" name="name" placeholder="enter name wanted">
+        <input type="text" name="email" placeholder="enter email wanted">
+        <input type="text" name="phone" placeholder="enter phone wanted">
+        <input type="submit" value="search">
+    </form>
+    <div th:if="${not #lists.isEmpty(contacts)}">
+        <div class="card" th:each="contact : ${contacts}">
+            <h2 th:text="${contact.name}"></h2>
+            <p th:text="${contact.location}"></p>
+            <a th:href="@{'/contact/update?id=' + ${contact.id} }">update the contact info</a>
+            <a th:href="@{'/contact/' + ${contact.id} }">View</a>
+            <a th:href="@{'/contact/delete?id=' + ${contact.id} }">delete</a>
+
+        </div>
+    </div>
+    <a href="http://localhost:8080/contact/reset">Factory Rest</a>
+</div>
+<div th:if="${#lists.isEmpty(contacts)}">
+    <center>
+        <h1>there are no contacts available</h1>
+    </center>
+</div>
+<a href="http://localhost:8080/contact/create">create a new contact</a>
+</body>
+</html>

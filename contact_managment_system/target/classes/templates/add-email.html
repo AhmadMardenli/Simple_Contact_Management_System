@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>create a new email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+
+        label {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<center>
+    <h1>create a new email</h1>
+</center>
+<form method="post" action="/email/add">
+<input type="text" name="email" id="email" placeholder="enter email" required>
+    <input name="id" id="id" type="hidden"  th:value="${id}"/>
+    <div th:if="${param.error}">
+        email already exists.
+    </div>
+    <input type="submit" value="create a new email">
+</form>
+</body>
+</html>
